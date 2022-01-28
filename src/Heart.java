@@ -3,23 +3,21 @@ public class Heart {
     private String color;
     private int size;
     private String saying;
-    private int calories;
-    private int costPerPound;
-    private boolean available;
+    private double calories;
+    private double costPerPound;
+   
     private int stock;
     // Add remaining heart properties here...
-
+    private boolean available;
     // CONSTRUCTORS
     public Heart() {
     } // This is the default constructor
 
-    public Heart(String color, int size, String saying, int calories, int costPerPound, boolean available, int stock) {
+    public Heart(String color, int size, String saying, double costPerPound, int stock) {
         this.color = color;
         this.size = size;
         this.saying = saying;
-        this.calories = calories;
         this.costPerPound = costPerPound;
-        this.available = available;
         this.stock = stock;
     }
     
@@ -39,11 +37,11 @@ public class Heart {
         return this.saying;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return this.calories;
     }
 
-    public int getCostPerPound() {
+    public double getCostPerPound() {
         return this.costPerPound;
     }
 
@@ -69,11 +67,11 @@ public class Heart {
         this.saying = saying;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 
-    public void setCostPerPound(int costPerPound) {
+    public void setCostPerPound(double costPerPound) {
         this.costPerPound = costPerPound;
     }
 
@@ -81,22 +79,32 @@ public class Heart {
         this.available = available;
     }
 
-    public void setStock(int stock) {
+    public void adjStock(int stock) {
+        if(stock < 0){
+            System.out.println("Stock Can't Go Below Zero");
+        }
+        else{
         this.stock = stock;
-    }
-
-    public void inStock(boolean available, int stock) {
         if (stock > 0) {
             this.available = true;
         } else {
             this.available = false;
-        }
+        }}
+        
     }
+
+
     // Add remaining Mutator methods here...
 
     // METHODS
     public String report() {
-        return this.color + "\n"; // Add other properties here as you add them to the class
+        return this.color + "\n" + this.size + "\n" + this.saying + "\n" + this.costPerPound + "\n" + this.stock; 
+        
+    }
+    
+    
+    public void adjPrice(int costPerPound, int givenPercentage){
+    this.costPerPound = costPerPound * givenPercentage;
     }
     // Write other methods here (if needed)...
 }
